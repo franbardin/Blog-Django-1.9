@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>Conversor de moneda</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div class="container_conv">
+
+        <input style="text" id="valor">
+        <br>
+        <br>
+        <select id="cmboxConver" onchange=calcular()>
+            <option value=0>Moneda</option>
+            <option value=0.06>Argentina</option>
+            <option value=1>Dolar</option>
+            <option value=1.12>Euro</option>
+            <option value=0.27>Real</option>
+            <option value=0.001>Chile</option>
+            <option value=0.030979>Uruguay</option>
+        </select>
+    </div>
+    <div id="containerVal">
+        <div id="val">
+            <p id="val1">0</p>AR$
+        </div>
+        <div id="val">
+            <p id="val2">0</p>USD
+        </div>
+        <div id="val">
+            <p id="val3">0</p>EUR
+        </div>
+        <div id="val">
+            <p id="val4">0</p>BRL
+        </div>
+        <div id="val">
+            <p id="val5">0</p>CLP
+        </div>
+        <div id="val">
+            <p id="val6">0</p>UYU
+        </div>
+    </div>
+
+    </div>
+<script>
+function calcular() {
+    var valor = document.getElementById("valor").value;
+    var comb1 = document.getElementById("cmboxConver").value;
+
+    var resarg = (comb1 * valor) / 0.06;
+    var resularg = eval(resarg);
+    document.getElementById("val1").innerHTML = resularg.toFixed(2);;
+
+    var resdol = (comb1 * valor) / 1;
+    var resuldol = eval(resdol);
+    document.getElementById("val2").innerHTML = resuldol.toFixed(2);;
+
+    var reseur = (comb1 * valor) / 1.12;
+    var resuleur = eval(reseur);
+    document.getElementById("val3").innerHTML = resuleur.toFixed(2);;
+
+    var resrea = (comb1 * valor) / 0.27;
+    var resulrea = eval(resrea);
+    document.getElementById("val4").innerHTML = resulrea.toFixed(2);;
+
+    var reschi = (comb1 * valor) / 0.001;
+    var resulchi = eval(reschi);
+    document.getElementById("val5").innerHTML = resulchi.toFixed(2);;
+
+    var resuru = (comb1 * valor) / 0.03;
+    var resulur = eval(resuru);
+    document.getElementById("val6").innerHTML = resulur.toFixed(2);
+}
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+{% load staticfiles %}
+<html>
+
+<head>
+    <link type="type/css" rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+</head>
+
+<body onload="both()">
+    <div id="fodero">
+        <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+    </div>
+    <div id="iconTainer">
+        <img id="image_top" src="css/img/imgch1.png">
+    </div>
+    <script>
+
+function both() {
+    imageChanger();
+    move();
+}
+
+function imageChanger() {
+    var image = document.getElementById("image_top");
+    switch (Math.floor(Math.random() * 3) + 1) {
+        case 1:
+            image.src = "{% static 'css/imgch1.png' %}";
+            break;
+        case 2:
+            image.src = "{% static 'css/imgch2.png' %}";
+            break;
+        case 3:
+            image.src = "{% static 'css/imgch3.png' %}";
+            break;
+    }
+    setTimeout(imageChanger, 5000);
+}
+
+function move() {
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 50);
+
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+            move();
+        } else {
+            width++;
+            elem.style.width = width + '%';
+        }
+    }
+}
+    </script>
+</body>
+
+</html>

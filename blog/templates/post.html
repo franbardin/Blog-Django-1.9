@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% load static %} {% load staticfiles %} {% block content %}
+<div class="main">
+
+    <!-- Messages  -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <!-- Post  -->
+    <ul>
+        <div class="blog-title" style="margin-top:3%;margin-left:0%">
+            <h3>{{ post.title }}</h3>
+        </div>
+        <div>
+            {% if post.url_post|length > 0 %}     {% include post.url_post %}     {% else %}         {% endif %} {{post.body}}
+        </div>
+
+
+    </ul>
+    <!--
+<nav aria-label="Page navigation">
+  <ul class="pager">
+    <li class="previous"><a href="#"><span aria-hidden="true">{{ posts.previous_page_number }}&larr; </span>Anterior</a></li>
+      
+    <li class="next"><a href="http://127.0.0.1:8000/post/{{post.id}}/">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+  </ul>
+</nav>       
+-->
+
+
+
+    <form action="" method="POST">{% csrf_token %} {% for comment in comments %}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                </div>
+                <!-- /col-sm-12 -->
+            </div>
+            <!-- /row -->
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class="thumbnail">
+                        <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>{{ comment.author }}</strong> <span class="text-muted">  | {{ comment.created }}</span>
+                    </div>
+                    <div class="panel-body">
+                        {{ comment.body|linebreaks }}
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+
+                <form method="POST">
+                    <!-- ICONO  -->
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        </span>
+
+                        <!-- USUARIO  -->
+                        <input type="text" class="form-control" placeholder="Usuario" aria-describedby="basic-addon1" id="input_text" name="author">
+                    </div>
+                    <br>
+
+
+                    <!-- ICONO  -->
+                    <div class="input-group"><span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-font" aria-hidden="true"></span></span>
+                        <div>
+
+                            <!-- AREA COMENTARIO  -->
+                            <textarea id="textarea1" name="content" placeholder="Comentario" rows="6" class="form-control" spellcheck="1" aria-describedby="basic-addon1"></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <!-- COMENTARIO  -->
+
+
+                    {% csrf_token %}
+
+                    <br>
+
+                    <div id="submit">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+
+
+                    {% endblock %}

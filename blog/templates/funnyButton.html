@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <title>Boton divertido</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div id="myDiv" onmouseover="moverDiv()"></div>
+
+<script>
+function moverDiv() {
+    var div = document.getElementById("myDiv");
+    var a = Math.random();
+    var a = a * 70;
+    var b = Math.random();
+    var b = b * 70;
+    console.log(a);
+    div.style.left = a + "%";
+    div.style.top = b + "%";
+}
+</script>
+
+</body>
+
+</html>

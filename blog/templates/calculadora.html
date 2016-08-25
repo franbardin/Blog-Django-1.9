@@ -1,0 +1,75 @@
+{% load static %}
+{% load staticfiles %}
+
+<html>
+
+<head>
+    <script src="js/script.js"></script>
+
+</head>
+
+<body>
+    <div class="containers">
+        <p id="display">0</p>
+        <button onClick="num(1)">1</button>
+        <button onClick="num(2)">2</button>
+        <button onClick="num(3)">3</button>
+        <button onClick=num("*")>*</button>
+        <br>
+        <br>
+        <button onClick="num(4)">4</button>
+        <button onClick="num(5)">5</button>
+        <button onClick="num(6)">6</button>
+        <button onClick=num("/")>/</button>
+        <br>
+        <br>
+        <button onClick=num(7)>7</button>
+        <button onClick="num(8)">8</button>
+        <button onClick="num(9)">9</button>
+        <button onClick=igual()>=</button>
+        <br>
+        <br>
+        <button onClick="num(0)">0</button>
+        <button onClick=num("+")>+</button>
+        <button onClick=num("-")>-</button>
+        <button onClick=borrar()>c</button>
+    </div>
+
+    <br>
+    <div id="cmboxcon">
+        <select class="cmbox" id="cmbox">
+            <option value="style">Estilo 1</option>
+            <option value="style2">Estilo 2</option>
+            <option value="style3">Estilo 3</option>
+        </select>
+    </div>
+
+    <script>
+    cmbox.onchange = function (e) {
+    document.querySelector("link").href = "{% static 'css/' %}" + cmbox.value + ".css"
+};
+    function borrar() {
+    document.getElementById('display').innerHTML = "0";
+}
+
+function num(x) {
+    var num1 = x;
+    var num2 = document.getElementById("display").innerHTML;
+    if (num2 == 0) {
+        num2 = "";
+    }
+    var r = num2 + num1;
+    document.getElementById("display").innerHTML = r;
+}
+
+function igual() {
+    var r = document.getElementById("display").innerHTML;
+    var r2 = eval(r);
+    document.getElementById("display").innerHTML = r2;
+}
+
+
+    </script>
+</body>
+
+</html>

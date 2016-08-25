@@ -1,0 +1,61 @@
+{% load static %}
+{% load staticfiles %}
+<html>
+
+<head>
+    <title>Cronometro</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <div id="CHArea">
+        <p id="ch">00:00:00</p>
+        <br>
+        <button id="btnCH" onclick="pause()"><img src="{% static 'css/pause.png' %}"></button>
+        <button id="btnCH" onclick="play()"><img src="{% static 'css/play.png' %}"></button>
+        <button id="btnCH" onclick="stop()"><img src="{% static 'css/stop.png' %}"></button>
+    </div>
+
+    <script>
+        var bl = true;
+        var sec = 0;
+        var min = 0;
+        var hor = 0;
+        var ttt;
+
+function play() {
+    if (bl) {
+        sec++;
+        document.getElementById("ch").innerHTML = hor + ":" + min + ":" + sec;
+    }
+    if (sec > 60) {
+        sec = 1;
+        min++;
+        document.getElementById("ch").innerHTML = hor + ":" + min + ":" + sec;
+    }
+    if (min > 60) {
+        min = 0;
+        hor++;
+        document.getElementById("ch").innerHTML = hor + ":" + min + ":" + sec;
+    }
+    ttt = setTimeout(function () {
+        play()
+    }, 1000)
+}
+function pause() {
+    clearTimeout(ttt);
+
+}
+
+function stop() {
+    hor = 0;
+    min = 0;
+    sec = 0;
+    document.getElementById("ch").innerHTML = hor + ":" + min + ":" + sec;
+    clearTimeout(ttt);
+}   
+    </script>
+</body>
+
+</html>
